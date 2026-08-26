@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#12306b"/><circle cx="100" cy="100" r="55" fill="#f6c445"/><text x="100" y="112" font-family="sans-serif" font-size="46" font-weight="700" fill="#12306b" text-anchor="middle">V</text></svg></template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0}
+  html,body{overflow-x:hidden;width:100%;max-width:100vw}
+  @keyframes floaty{0%{transform:translateY(0px)}50%{transform:translateY(-14px)}100%{transform:translateY(0px)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+</style>
+</helmet>
+<div style="--bg:oklch(0.985 0.006 95);--panel:oklch(1 0 0);--panel2:oklch(0.95 0.045 95);--cream:oklch(0.28 0.06 265);--creamDim:oklch(0.48 0.03 265);--brass:oklch(0.5 0.18 265);--brassDeep:oklch(0.36 0.16 265);--garnet:oklch(0.82 0.16 88);--garnetBright:oklch(0.87 0.16 88);--line:oklch(0.9 0.015 95);background:var(--bg);color:var(--cream);min-height:100vh;font-family:'Archivo',sans-serif;position:relative;overflow-x:hidden">
+
+  <div style="position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(circle at 15% -5%, oklch(0.92 0.09 88 / 0.55), transparent 55%), radial-gradient(circle at 90% 95%, oklch(0.86 0.1 265 / 0.35), transparent 50%)"></div>
+
+  <nav style="position:fixed;top:0;left:0;right:0;width:100%;max-width:100vw;height:84px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 clamp(14px,4vw,48px);background:oklch(0.99 0.005 95 / 0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);z-index:50;box-sizing:border-box">
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+      <img src="assets/vaqueros-logo.png" alt="Vaqueros" style="width:44px;height:44px;object-fit:contain"/>
+      <span style="font-family:'Fredoka',sans-serif;font-weight:600;letter-spacing:0.06em;font-size:15px;color:var(--cream);white-space:nowrap">VAQUERAS 10U</span>
+    </div>
+    <div style="display:flex;gap:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;min-width:0;height:100%;align-items:center">
+      <sc-for list="{{navItems}}" as="item" hint-placeholder-count="6">
+        <button onClick="{{item.onClick}}" style="background:transparent;border:none;border-bottom:2px solid {{item.borderColor}};color:{{item.color}};font-family:'Archivo',sans-serif;font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;padding:10px 4px;white-space:nowrap;flex-shrink:0;cursor:pointer;transition:color .3s,border-color .3s">{{item.label}}</button>
+      </sc-for>
+    </div>
+  </nav>
+
+  <main style="position:relative;z-index:1;padding-top:84px">
+
+    <sc-if value="{{isInicio}}" hint-placeholder-val="{{true}}">
+      <section style="min-height:calc(100vh - 84px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;position:relative">
+        <div style="animation:floaty 7s ease-in-out infinite;margin-bottom:36px" onMouseMove="{{onHeroMove}}" onMouseLeave="{{onHeroLeave}}">
+          <div style="width:240px;height:240px;border-radius:28px;transform:{{heroTransform}};transition:transform .15s ease-out;background:var(--panel);box-shadow:0 24px 50px oklch(0.45 0.15 265 / 0.22), 0 0 0 10px var(--panel2);display:flex;align-items:center;justify-content:center;padding:28px">
+            <img src="assets/vaqueros-logo.png" alt="Vaqueros" style="width:100%;height:100%;object-fit:contain"/>
+          </div>
+        </div>
+        <div style="font-family:'Archivo',sans-serif;font-size:12.5px;letter-spacing:0.28em;color:var(--brass);text-transform:uppercase;margin-bottom:18px">Club Voleibol Vaqueros de Bayamón</div>
+        <h1 style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:clamp(48px,8vw,104px);line-height:0.98;margin:0 0 20px;letter-spacing:0.01em">Plan de Trabajo</h1>
+        <div style="font-family:'Fredoka',sans-serif;font-style:italic;font-weight:400;font-size:clamp(22px,3vw,32px);color:var(--creamDim);margin-bottom:36px">Temporada 2026 – 2027 · Vaqueras 10U</div>
+        <div style="display:flex;gap:48px;flex-wrap:wrap;justify-content:center;margin-top:8px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0">
+          <div style="text-align:left"><div style="font-size:11px;letter-spacing:0.18em;color:var(--brass);text-transform:uppercase;margin-bottom:4px">Dirigente</div><div style="font-family:'Fredoka',sans-serif;font-size:19px">Edwin Aponte Santiago</div></div>
+          <div style="text-align:left"><div style="font-size:11px;letter-spacing:0.18em;color:var(--brass);text-transform:uppercase;margin-bottom:4px">Coordinadora</div><div style="font-family:'Fredoka',sans-serif;font-size:19px">Janisse Pagán Trinidad</div></div>
+        </div>
+      </section>
+
+      <section style="max-width:1100px;margin:0 auto;padding:100px 32px;text-align:center">
+        <div style="font-size:12px;letter-spacing:0.22em;color:var(--brass);text-transform:uppercase;margin-bottom:16px">Nuestra Meta Principal</div>
+        <h2 style="font-family:'Fredoka',sans-serif;font-weight:500;font-size:clamp(28px,4vw,46px);line-height:1.25;margin:0 0 56px">Aprender, competir y crecer juntas.</h2>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;text-align:left">
+          <div style="background:var(--panel);padding:32px 36px"><div style="font-family:'Fredoka',sans-serif;font-size:19px;margin-bottom:10px">Fundamentos sólidos</div><div style="color:var(--creamDim);font-size:15px;line-height:1.6">Construir un sistema de juego consistente que nos permita competir con confianza al mejor nivel posible.</div></div>
+          <div style="background:var(--panel);padding:32px 36px"><div style="font-family:'Fredoka',sans-serif;font-size:19px;margin-bottom:10px">Orgullo del club</div><div style="color:var(--creamDim);font-size:15px;line-height:1.6">Representar con orgullo al Club Voleibol Vaqueros de Bayamón en cada presentación.</div></div>
+          <div style="background:var(--panel);padding:32px 36px"><div style="font-family:'Fredoka',sans-serif;font-size:19px;margin-bottom:10px">Compromiso</div><div style="color:var(--creamDim);font-size:15px;line-height:1.6">Asumir cada reto con compromiso, responsabilidad y compañerismo.</div></div>
+          <div style="background:var(--panel);padding:32px 36px"><div style="font-family:'Fredoka',sans-serif;font-size:19px;margin-bottom:10px">Unidad desde el día 1</div><div style="color:var(--creamDim);font-size:15px;line-height:1.6">Fortalecer la unidad y el sentido de pertenencia desde el primer día de trabajo.</div></div>
+        </div>
+      </section>
+
+      <section style="max-width:1200px;margin:0 auto;padding:20px 32px 120px">
+        <div style="text-align:center;margin-bottom:56px">
+          <div style="font-size:12px;letter-spacing:0.22em;color:var(--brass);text-transform:uppercase;margin-bottom:16px">Lo que queremos lograr</div>
+          <h2 style="font-family:'Fredoka',sans-serif;font-weight:500;font-size:clamp(26px,3.6vw,40px);margin:0">Cinco pilares de la temporada</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px">
+          <sc-for list="{{pillars}}" as="p" hint-placeholder-count="5">
+            <div style="animation:fadeUp .6s ease-out both;animation-delay:{{p.delay}};background:var(--panel);border:1px solid var(--line);border-top:5px solid var(--garnet);border-radius:18px;padding:26px 20px;text-align:center">
+              <div style="font-family:'Fredoka',sans-serif;font-weight:700;color:var(--brass);font-size:15px;letter-spacing:0.1em;margin-bottom:12px">{{p.title}}</div>
+              <div style="color:var(--creamDim);font-size:13.5px;line-height:1.6">{{p.body}}</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{isPlantilla}}" hint-placeholder-val="{{false}}">
+      <section style="max-width:1200px;margin:0 auto;padding:80px 32px 120px">
+        <div style="text-align:center;margin-bottom:64px">
+          <div style="font-size:12px;letter-spacing:0.22em;color:var(--brass);text-transform:uppercase;margin-bottom:16px">Nuestro Equipo</div>
+          <h1 style="font-family:'Fredoka',sans-serif;font-weight:500;font-size:clamp(34px,5vw,56px);margin:0 0 14px">La Plantilla</h1>
+          <div style="color:var(--creamDim);font-size:16px">11 jugadoras · una misma identidad</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px">
+          <sc-for list="{{players}}" as="pl" hint-placeholder-count="11">
+            <div style="animation:fadeUp .6s ease-out both;animation-delay:{{pl.delay}};background:linear-gradient(160deg, var(--panel2), var(--panel));border:1px solid var(--line);border-radius:20px;padding:28px 22px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
+              <div style="width:64px;height:64px;border-radius:50%;background:conic-gradient(from 200deg, var(--brassDeep), var(--brass), var(--brassDeep));display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px oklch(0.45 0.15 265 / 0.28)">
+                <div style="width:52px;height:52px;border-radius:50%;background:var(--panel);display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:20px;color:var(--brass)">{{pl.number}}</div>
+              </div>
+              <div style="font-family:'Fredoka',sans-serif;font-size:18px">{{pl.name}}</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{isTemporada}}" hint-placeholder-val="{{false}}">
+      <section style="max-width:1100px;margin:0 auto;padding:80px 32px 60px">
+        <div style="text-align:center;margin-bottom:56px">
+          <div style="font-size:12px;letter-spacing:0.22em;color:var(--brass);text-transform:uppercase;margin-bottom:16px">Construcción por Etapas</div>
+          <h1 style="font-family:'Fredoka',sans-serif;font-weight:500;font-size:clamp(34px,5vw,52px);margin:0">La Temporada</h1>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <sc-for list="{{stages}}" as="s" hint-placeholder-count="6">
+            <div style="animation:fadeUp .6s ease-out both;animation-delay:{{s.delay}};display:grid;grid-template-columns:110px 1px 1fr;gap:28px;padding:26px 0;border-bottom:1px solid var(--line)">
+              <div>
+                <div style="font-family:'Fredoka',sans-serif;color:var(--brass);font-size:13px;letter-spacing:0.08em">{{s.weeks}}</div>
+                <div style="color:var(--creamDim);font-size:11.5px;margin-top:4px">{{s.dates}}</div>
+              </div>
+              <div style="background:var(--brass);opacity:.4"></div>
+              <div>
+                <div style="font-family:'Fredoka',sans-serif;font-size:20px;margin-bottom:6px">{{s.title}}</div>
+                <div style="color:var(--creamDim);font-size:14.5px;line-height:1.6;max-width:640px">{{s.body}}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="max-width:1100px;margin:0 auto;padding:60px 32px 120px">
+        <div style="text-align:center;margin-bottom:48px">
+          <div style="font-size:12px;letter-spacing:0.22em;color:var(--brass);text-transform:uppercase;margin-bottom:16px">Calendario Competitivo 2026–2027</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden">
+          <sc-for list="{{tournaments}}" as="t" hint-placeholder-count="13">
+            <div style="background:var(--panel);padding:20px 22px">
+              <div style="font-family:'Fredoka',sans-serif;font-size:16px;margin-bottom:6px">{{t.name}}</div>
+              <div style="color:var(--brass);font-size:12.5px;letter-spacing:0.05em">{{t.dates}}</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{isSistema}}" hint-placeholder-val="{{false}}">
+      <section style="max-width:1150px;margin:0 auto;padding:80px 32px 120px">
+        <div style="text-align:center;margin-bottom:56px">
+          <div style="font-size:12px;letter-spacing:0.22em;color:var(--brass);text-transform:uppercase;margin-bottom:16px">Objetivos Técnicos</div>
+          <h1 style="font-family:'Fredoka',sans-serif;font-weight:500;font-size:clamp(34px,5vw,52px);margin:0">Dominar los Fundamentos</h1>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+          <sc-for list="{{positions}}" as="pos" hint-placeholder-count="6">
+            <div style="animation:fadeUp .6s ease-out both;animation-delay:{{pos.delay}};background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:30px 26px">
+              <div style="font-family:'Fredoka',sans-serif;font-weight:700;color:var(--brass);font-size:17px;letter-spacing:0.08em;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:12px">{{pos.title}}</div>
+              <div style="color:var(--creamDim);font-size:14px;line-height:1.7">{{pos.body}}</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{isProtocolo}}" hint-placeholder-val="{{false}}">
+      <section style="max-width:1100px;margin:0 auto;padding:80px 32px 60px">
+        <div style="text-align:center;margin-bottom:56px">
+          <div style="font-size:12px;letter-spacing:0.22em;color:var(--brass);text-transform:uppercase;margin-bottom:16px">Día de Juego</div>
+          <h1 style="font-family:'Fredoka',sans-serif;font-weight:500;font-size:clamp(34px,5vw,52px);margin:0">Preparadas desde Antes</h1>
+        </div>
+        <div style="display:grid;grid-template-columns:180px 1fr;gap:32px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:40px;margin-bottom:60px">
+          <div style="font-family:'Fredoka',sans-serif;font-size:52px;color:var(--brass);text-align:center;align-self:center">60'</div>
+          <div style="display:flex;flex-direction:column;gap:14px;justify-content:center">
+            <div style="color:var(--cream);font-size:15px;line-height:1.6">La hora exacta de citación la determina el dirigente, siempre antes del inicio del juego.</div>
+            <div style="color:var(--creamDim);font-size:14px;line-height:1.6">Llegar tarde puede implicar la pérdida de un set, salvo una emergencia evaluada por el dirigente.</div>
+            <div style="color:var(--creamDim);font-size:14px;line-height:1.6">Cada jugadora debe llevar ambos uniformes en todo momento.</div>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-bottom:40px">
+          <div style="font-size:12px;letter-spacing:0.22em;color:var(--brass);text-transform:uppercase;margin-bottom:16px">En las Prácticas</div>
+          <h2 style="font-family:'Fredoka',sans-serif;font-weight:500;font-size:26px;margin:0">La Presencia Cuenta</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:60px">
+          <sc-for list="{{attendanceRules}}" as="r" hint-placeholder-count="6">
+            <div style="background:var(--panel);padding:22px 26px;color:var(--creamDim);font-size:14px;line-height:1.6">{{r.text}}</div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden">
+          <div style="background:var(--panel);padding:36px">
+            <div style="font-family:'Fredoka',sans-serif;color:var(--brass);letter-spacing:0.1em;font-size:15px;margin-bottom:16px">JUGADORAS</div>
+            <sc-for list="{{playerAgreements}}" as="a" hint-placeholder-count="3">
+              <div style="color:var(--creamDim);font-size:14px;line-height:1.7;margin-bottom:12px">— {{a.text}}</div>
+            </sc-for>
+          </div>
+          <div style="background:var(--panel);padding:36px">
+            <div style="font-family:'Fredoka',sans-serif;color:var(--brass);letter-spacing:0.1em;font-size:15px;margin-bottom:16px">FAMILIAS</div>
+            <sc-for list="{{familyAgreements}}" as="a" hint-placeholder-count="3">
+              <div style="color:var(--creamDim);font-size:14px;line-height:1.7;margin-bottom:12px">— {{a.text}}</div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{isContacto}}" hint-placeholder-val="{{false}}">
+      <section style="max-width:900px;margin:0 auto;padding:100px 32px 60px;text-align:center">
+        <div style="font-size:12px;letter-spacing:0.22em;color:var(--brass);text-transform:uppercase;margin-bottom:16px">Contacto</div>
+        <h1 style="font-family:'Fredoka',sans-serif;font-weight:500;font-size:clamp(30px,4.5vw,46px);margin:0 0 56px">Cuerpo Técnico</h1>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:70px;text-align:left">
+          <div style="background:var(--panel);padding:34px"><div style="font-size:11px;letter-spacing:0.18em;color:var(--brass);text-transform:uppercase;margin-bottom:8px">Dirigente</div><div style="font-family:'Fredoka',sans-serif;font-size:22px">Edwin Aponte Santiago</div></div>
+          <div style="background:var(--panel);padding:34px"><div style="font-size:11px;letter-spacing:0.18em;color:var(--brass);text-transform:uppercase;margin-bottom:8px">Coordinadora</div><div style="font-family:'Fredoka',sans-serif;font-size:22px">Janisse Pagán Trinidad</div></div>
+        </div>
+        <div style="color:var(--creamDim);font-size:15px;margin-bottom:8px">Club Voleibol Vaqueros de Bayamón</div>
+      </section>
+
+      <section style="max-width:800px;margin:0 auto;padding:20px 32px 130px;text-align:center">
+        <h2 style="font-family:'Fredoka',sans-serif;font-style:italic;font-weight:400;font-size:clamp(22px,3vw,32px);line-height:1.4;margin:0 0 28px">Más que una temporada,<br/>una experiencia para recordar.</h2>
+        <div style="color:var(--creamDim);font-size:15px;line-height:1.8;margin-bottom:30px">Trabajaremos juntos para que estas jóvenes representen al Club Voleibol Vaqueros con orgullo, crezcan dentro y fuera de la cancha, y construyan recuerdos para toda la vida.</div>
+        <div style="font-family:'Fredoka',sans-serif;color:var(--brass);letter-spacing:0.04em;font-size:16px">Juntos entrenamos · juntos competimos · juntos crecemos.</div>
+      </section>
+    </sc-if>
+
+    <footer style="border-top:1px solid var(--line);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;color:var(--creamDim);font-size:12px;letter-spacing:0.06em">
+      <span>VAQUERAS 10U · TEMPORADA 2026–2027</span>
+      <span>CLUB VOLEIBOL VAQUEROS DE BAYAMÓN</span>
+    </footer>
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { tab: 'inicio', rx: 0, ry: 0 };
+
+  players = [
+    ['1','Amaia Salgado'],['2','Anelisse Cruz'],['3','Charlotte Pérez'],['4','Mikaela Dávila'],
+    ['5','Xaviana Rosario'],['6','Daniela Montalvo'],['7','Gabriela Colón'],['8','Giliana Muñoz'],
+    ['9','Katalina Gotay'],['10','Mia Mills'],['11','Miranda Rivera']
+  ];
+
+  pillars = [
+    ['CONSISTENCIA','Prepararnos, jugar y cerrar cada encuentro con hábitos estables.'],
+    ['DESARROLLO','Mejorar durante todo el año, paso a paso y con intención.'],
+    ['ESTUDIANTE–ATLETA','La formación académica siempre va primero.'],
+    ['PROCESO','Cumplir las etapas preparatoria, precompetitiva y competitiva.'],
+    ['EQUIPO','Aceptar cada rol en beneficio del grupo, no del resultado individual.']
+  ];
+
+  stages = [
+    ['GENERAL','Sem. 1–3','2–16 sep','Conocer al grupo y recopilar la información necesaria para planificar.'],
+    ['INTRODUCTORIA','Sem. 4–7','17 sep–14 oct','Trabajar los fundamentos del juego y la preparación física.'],
+    ['DESARROLLO','Sem. 8–12','15 oct–18 nov','Profundizar en técnica, iniciar el trabajo táctico y elevar la concentración.'],
+    ['PRECOMPETENCIA','Sem. 13–21','19 nov–20 ene','Desarrollamos el patrón de juego y reconocemos fortalezas y áreas de mejora en lo técnico y táctico.'],
+    ['PULIDO','Sem. 22–34','21 ene–21 abr','Buscamos consistencia en todas las facetas para llegar a la competencia como un equipo conectado y efectivo.'],
+    ['COMPETENCIA · PRINCIPAL','Sem. 35–43','22 abr–13 jun','Integramos la preparación física, técnica, táctica y emocional para rendir al máximo dentro de nuestra categoría.']
+  ];
+
+  tournaments = [
+    ['Ariel y Feño Volleyball Challenge','3–6 dic'],['Media Day Vaqueros','10–13 dic'],['Voleicon','17–20 dic'],
+    ['Copa Collazo','13–17 ene'],['Showcase','5–8 feb'],['Volley Roots','11–14 feb'],
+    ['Caribbean Volleyball Championship','4–7 mar'],['Power League','14–18 abr'],['The Finals','29 abr–2 may'],
+    ['Avoli','12–16 may'],['Summer Fest','19–23 may'],["Wicho's Volleyball Challenge",'27–30 may'],['AAU','14–17 jun']
+  ];
+
+  positions = [
+    ['RECIBO','Postura · plataforma · balance · dirección'],
+    ['ATAQUE','Footwork · tren inferior · contacto alto · zonas'],
+    ['DEFENSA','Lectura · reacción · desplazamiento · control'],
+    ['BLOQUEO','Postura · contacto individual · coordinación'],
+    ['COLOCACIÓN','Posición corporal · voleo · anticipación · precisión'],
+    ['SAQUE','Balance · contacto lineal · consistencia · servicio cruzado']
+  ];
+
+  attendanceRules = [
+    'Se llevará asistencia en cada práctica.',
+    'Toda ausencia debe comunicarse a la coordinadora y al entrenador.',
+    'Ausencias prolongadas por lesión o enfermedad requerirán certificado médico.',
+    'Si es seguro, la jugadora podrá observar y escuchar aunque no entrene.',
+    'Luego de 10 ausencias injustificadas se aplicará el reglamento interno.',
+    'Se requiere un adulto presente y la camisa de práctica asignada.'
+  ];
+
+  playerAgreements = [
+    'Cada jugadora tendrá un rol asignado.',
+    'El tiempo de juego depende del trabajo en práctica y de las reglas del torneo.',
+    'Las actitudes que afecten la química del equipo se atenderán con los recursos correspondientes.'
+  ];
+
+  familyAgreements = [
+    'Respeto absoluto a árbitros, mesa, rivales, entrenadores y compañeras.',
+    'Las instrucciones durante el juego corresponden al dirigente.',
+    'Las inquietudes se solicitan por escrito a la coordinación y se conversan luego de 48 horas.'
+  ];
+
+  navLabels = { inicio: 'Inicio', plantilla: 'Plantilla', temporada: 'Temporada', sistema: 'Sistema de Juego', protocolo: 'Protocolo', contacto: 'Contacto' };
+
+  onHeroMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const px = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    const py = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+    this.setState({ rx: py * -10, ry: px * 12 });
+  };
+  onHeroLeave = () => this.setState({ rx: 0, ry: 0 });
+
+  renderVals() {
+    const tab = this.state.tab;
+    const brass = 'oklch(0.5 0.18 265)';
+    const creamDim = 'oklch(0.48 0.03 265)';
+    const tabs = ['inicio', 'plantilla', 'temporada', 'sistema', 'protocolo', 'contacto'];
+    const navItems = tabs.map(t => ({
+      key: t, label: this.navLabels[t],
+      onClick: () => this.setState({ tab: t }),
+      color: t === tab ? brass : creamDim,
+      borderColor: t === tab ? brass : 'transparent'
+    }));
+
+    const withDelay = (arr, mapFn) => arr.map((it, i) => ({ ...mapFn(it, i), delay: (i * 0.06) + 's' }));
+
+    return {
+      navItems,
+      isInicio: tab === 'inicio', isPlantilla: tab === 'plantilla', isTemporada: tab === 'temporada',
+      isSistema: tab === 'sistema', isProtocolo: tab === 'protocolo', isContacto: tab === 'contacto',
+      heroTransform: `perspective(1000px) rotateX(${this.state.rx}deg) rotateY(${this.state.ry}deg)`,
+      onHeroMove: this.onHeroMove, onHeroLeave: this.onHeroLeave,
+      players: withDelay(this.players, ([number, name]) => ({ number, name })),
+      pillars: withDelay(this.pillars, ([title, body]) => ({ title, body })),
+      stages: withDelay(this.stages, ([title, weeks, dates, body]) => ({ title, weeks, dates, body })),
+      tournaments: withDelay(this.tournaments, ([name, dates]) => ({ name, dates })),
+      positions: withDelay(this.positions, ([title, body]) => ({ title, body })),
+      attendanceRules: this.attendanceRules.map(text => ({ text })),
+      playerAgreements: this.playerAgreements.map(text => ({ text })),
+      familyAgreements: this.familyAgreements.map(text => ({ text }))
+    };
+  }
+}
+
+</script>
+</body>
+</html>
