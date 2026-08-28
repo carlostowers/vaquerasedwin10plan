@@ -193,7 +193,7 @@
           <div style="position:absolute;inset:0;background:linear-gradient(0deg, var(--bg) 0%, transparent 22%)"></div>
         </div>
       </sc-if>
-      <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;padding-right:clamp(0px,32%,380px);opacity:{{reveal.protocolo.op}};transform:translateY({{reveal.protocolo.ty}}px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)">
+      <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;padding-right:{{bandPad}};opacity:{{reveal.protocolo.op}};transform:translateY({{reveal.protocolo.ty}}px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)">
         <div style="text-align:center;margin-bottom:56px">
           <div style="font-size:12px;letter-spacing:0.22em;color:var(--blue);text-transform:uppercase;margin-bottom:16px">Día de Juego</div>
           <h1 style="font-family:'Fredoka',sans-serif;font-weight:500;font-size:clamp(34px,5vw,52px);margin:0">Preparadas desde Antes</h1>
@@ -242,7 +242,7 @@
           <div style="position:absolute;inset:0;background:linear-gradient(0deg, var(--bg) 0%, transparent 22%)"></div>
         </div>
       </sc-if>
-      <div style="max-width:900px;margin:0 auto 0 auto;position:relative;z-index:1;text-align:center;padding-left:clamp(0px,30%,340px);opacity:{{reveal.contacto.op}};transform:translateY({{reveal.contacto.ty}}px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)">
+      <div style="max-width:900px;margin:0 auto 0 auto;position:relative;z-index:1;text-align:center;padding-left:{{bandPad}};opacity:{{reveal.contacto.op}};transform:translateY({{reveal.contacto.ty}}px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)">
         <div style="font-size:12px;letter-spacing:0.22em;color:var(--blue);text-transform:uppercase;margin-bottom:16px">Contacto</div>
         <h1 style="font-family:'Fredoka',sans-serif;font-weight:500;font-size:clamp(30px,4.5vw,46px);margin:0 0 56px">Cuerpo Técnico</h1>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:70px;text-align:left">
@@ -269,7 +269,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;motionIntensity&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;balanced&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;subtle&quot;,&quot;balanced&quot;,&quot;dynamic&quot;],&quot;section&quot;:&quot;Movimiento&quot;},&quot;showCoachPhotos&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Movimiento&quot;}}">
 class Component extends DCLogic {
-  state = { rx: 0, ry: 0, scrollY: 0, active: 'inicio', revealed: new Set(['inicio']) };
+  state = { rx: 0, ry: 0, scrollY: 0, active: 'inicio', revealed: new Set(['inicio']), viewportW: 1200 };
   sectionEls = {};
   ticking = false;
 
@@ -384,6 +384,9 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
+    this.setState({ viewportW: window.innerWidth });
+    this.onResize = () => this.setState({ viewportW: window.innerWidth });
+    window.addEventListener('resize', this.onResize);
     this.onScroll = () => {
       if (!this.ticking) {
         this.ticking = true;
@@ -397,6 +400,7 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
     document.body.removeEventListener('scroll', this.onScroll);
     document.documentElement.removeEventListener('scroll', this.onScroll);
     if (this.observer) this.observer.disconnect();
@@ -441,7 +445,9 @@ class Component extends DCLogic {
     const distMap = { subtle: 18, balanced: 36, dynamic: 64 };
     const parallaxMap = { subtle: 0.03, balanced: 0.06, dynamic: 0.1 };
     const dist = distMap[motion] ?? 36;
-    const showPhotos = this.props.showCoachPhotos ?? true;
+    const isMobile = this.state.viewportW < 760;
+    const showPhotos = (this.props.showCoachPhotos ?? true) && !isMobile;
+    const bandPad = isMobile ? '0px' : 'clamp(0px,32%,380px)';
     const brand = 'oklch(0.5 0.18 265)';
     const inkDim = 'oklch(0.48 0.03 265)';
 
@@ -481,6 +487,7 @@ class Component extends DCLogic {
       refs,
       reveal,
       showPhotos,
+      bandPad,
       lightX: 15 + scrollRatio * 30,
       lightY: -5 + scrollRatio * 40,
       heroDrift: this.state.scrollY * -0.08,
