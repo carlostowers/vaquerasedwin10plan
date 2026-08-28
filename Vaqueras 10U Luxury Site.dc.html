@@ -124,7 +124,7 @@
         </div>
         <div style="background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:16px;text-align:center">
           <image-slot id="modelo-equipo" shape="rounded" radius="16" style="width:100%;height:220px" placeholder="Foto de jugadoras modelando" src="assets/equipo-uniformes.jpg"></image-slot>
-          <div style="font-family:'Fredoka',sans-serif;font-size:15px;margin-top:12px;color:var(--blue)">Nuestras jugadoras</div>
+          <div style="font-family:'Fredoka',sans-serif;font-size:15px;margin-top:12px;color:var(--blue)">Uniformes de juego</div>
         </div>
       </div>
       <div style="text-align:center;background:var(--panel2);border-radius:16px;padding:14px 22px;max-width:460px;margin:24px auto 0">
@@ -187,7 +187,7 @@
 
     <section ref="{{refs.protocolo}}" style="position:relative;overflow:hidden;padding:100px 32px 60px">
       <sc-if value="{{showPhotos}}" hint-placeholder-val="{{true}}">
-        <div style="position:absolute;top:0;right:0;bottom:0;width:min(42%,480px);z-index:0;overflow:hidden;-webkit-mask-image:linear-gradient(to right, transparent, black 18%);mask-image:linear-gradient(to right, transparent, black 18%)">
+        <div style="position:absolute;top:0;right:0;bottom:0;width:{{bandWidth}};z-index:0;overflow:hidden;-webkit-mask-image:linear-gradient(to right, transparent, black 18%);mask-image:linear-gradient(to right, transparent, black 18%)">
           <img src="assets/coach-portrait.png" alt="" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:60% 22%;transform:translateY({{photoParallax}}px);filter:grayscale(.25) contrast(1.05) brightness(1.02) saturate(1.1)"/>
           <div style="position:absolute;inset:0;background:linear-gradient(90deg, var(--bg) 0%, transparent 30%);"></div>
           <div style="position:absolute;inset:0;background:linear-gradient(0deg, var(--bg) 0%, transparent 22%)"></div>
@@ -236,7 +236,7 @@
 
     <section ref="{{refs.contacto}}" style="position:relative;overflow:hidden;padding:100px 32px 60px">
       <sc-if value="{{showPhotos}}" hint-placeholder-val="{{true}}">
-        <div style="position:absolute;top:0;left:0;bottom:0;width:min(42%,480px);z-index:0;overflow:hidden;-webkit-mask-image:linear-gradient(to left, transparent, black 18%);mask-image:linear-gradient(to left, transparent, black 18%)">
+        <div style="position:absolute;top:0;left:0;bottom:0;width:{{bandWidth}};z-index:0;overflow:hidden;-webkit-mask-image:linear-gradient(to left, transparent, black 18%);mask-image:linear-gradient(to left, transparent, black 18%)">
           <img src="assets/coach-ball.png" alt="" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;transform:translateY({{photoParallax}}px);filter:grayscale(.25) contrast(1.05) brightness(1.02) saturate(1.1)"/>
           <div style="position:absolute;inset:0;background:linear-gradient(-90deg, var(--bg) 0%, transparent 30%);"></div>
           <div style="position:absolute;inset:0;background:linear-gradient(0deg, var(--bg) 0%, transparent 22%)"></div>
@@ -446,8 +446,9 @@ class Component extends DCLogic {
     const parallaxMap = { subtle: 0.03, balanced: 0.06, dynamic: 0.1 };
     const dist = distMap[motion] ?? 36;
     const isMobile = this.state.viewportW < 760;
-    const showPhotos = (this.props.showCoachPhotos ?? true) && !isMobile;
-    const bandPad = isMobile ? '0px' : 'clamp(0px,32%,380px)';
+    const showPhotos = this.props.showCoachPhotos ?? true;
+    const bandPad = isMobile ? '86px' : 'clamp(0px,32%,380px)';
+    const bandWidth = isMobile ? 'min(32%,140px)' : 'min(42%,480px)';
     const brand = 'oklch(0.5 0.18 265)';
     const inkDim = 'oklch(0.48 0.03 265)';
 
@@ -488,6 +489,7 @@ class Component extends DCLogic {
       reveal,
       showPhotos,
       bandPad,
+      bandWidth,
       lightX: 15 + scrollRatio * 30,
       lightY: -5 + scrollRatio * 40,
       heroDrift: this.state.scrollY * -0.08,
