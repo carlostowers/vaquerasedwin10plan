@@ -446,9 +446,9 @@ class Component extends DCLogic {
     const parallaxMap = { subtle: 0.03, balanced: 0.06, dynamic: 0.1 };
     const dist = distMap[motion] ?? 36;
     const isMobile = this.state.viewportW < 760;
-    const showPhotos = this.props.showCoachPhotos ?? true;
-    const bandPad = isMobile ? '86px' : 'clamp(0px,32%,380px)';
-    const bandWidth = isMobile ? 'min(32%,140px)' : 'min(42%,480px)';
+    const showPhotos = (this.props.showCoachPhotos ?? true) && !isMobile;
+    const bandPad = isMobile ? '0px' : 'clamp(0px,32%,380px)';
+    const bandWidth = 'min(42%,480px)';
     const brand = 'oklch(0.5 0.18 265)';
     const inkDim = 'oklch(0.48 0.03 265)';
 
